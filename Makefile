@@ -63,15 +63,15 @@ generate_distance: $(prepare_data_dir)/my_generate_distance.o $(hc_lib_dir)/hc_t
 $(prepare_data_dir)/my_generate_distance.o: $(prepare_data_dir)/my_generate_distance.cpp
 	g++ $(i_rbt_dir) $(i_hc_lib_dir) \
 	 $(prepare_data_dir)/my_generate_distance.cpp -c -o $(prepare_data_dir)/my_generate_distance.o
-weight: ./data_prepare/mlb_weight.o
-	g++ ./data_prepare/mlb_weight.o -o ./bin/weight
-generate_ha_constraints: ./data_prepare/generate_hierarchy_constraints.o
-	g++ ./data_prepare/generate_hierarchy_constraints.o -o ./bin/generate_ha_constraints
-generate_constraints: ./data_prepare/generate_constraints.o
-	g++ ./data_prepare/generate_constraints.o -o ./bin/generate_constraints
+weight: ./data_prepare/mlb_weight.cpp
+	g++ ./data_prepare/mlb_weight.cpp -o ./bin/weight
+generate_ha_constraints: ./data_prepare/generate_hierarchy_constraints.cpp
+	g++ ./data_prepare/generate_hierarchy_constraints.cpp -o ./bin/generate_ha_constraints
+generate_constraints: ./data_prepare/generate_constraints.cpp
+	g++ ./data_prepare/generate_constraints.cpp -o ./bin/generate_constraints
 #utils
-fscore: ./src/fscore/fscore.o
-	g++ ./src/fscore/fscore.o -o ./bin/fscore
+fscore: ./src/fscore/fscore.cpp
+	g++ ./src/fscore/fscore.cpp -o ./bin/fscore
 clear:
 	-rm ./bin/*
 	-find . -name '*.o' -type f -print -exec rm -rf {} \;
