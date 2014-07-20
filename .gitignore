@@ -11,3 +11,7 @@
 *.lai
 *.la
 *.a
+
+data/
+bin/
+resutl*
