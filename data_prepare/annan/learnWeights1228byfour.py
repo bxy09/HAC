@@ -158,9 +158,9 @@ def mainRun(params):
 
   ##--get Features and initialize weights
     feats = []
-    feats.append(0.0)#blank feat for zero
+    feats.append(1.0)#blank feat for zero
     for i in range(termNum):
-        feats.append(0.0)
+        feats.append(1.0)
 
   ##--get Features and initialize weights
     pilotData = labels.keys()
