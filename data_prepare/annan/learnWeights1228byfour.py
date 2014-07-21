@@ -82,7 +82,7 @@ def LsimReuters(label1,label2):
 def updateWeights(X, Y, nu = 0.015):
     global feats
     global data
-    for key in data[X].keys:
+    for key in data[X].keys():
         if key in data[Y]:
             feats[key] += feats[key] * nu * data[X][key] * data[Y][key]
 ##end of updateWeights
