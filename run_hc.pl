@@ -61,7 +61,8 @@ sub run{
 					my $tra_tag = 1;
 					my $mlb_tag = 1;
 					my $rt_tag = 1;
-					my $tra_m_tag = 0;
+					my $tra_m_tag = 1;
+					my $annan_m_tag = 1;
 					my $mlb_m_tag = 0;
 					my $rt_m_tag = 0;
 
@@ -93,6 +94,17 @@ sub run{
 						}
 						system("mv $cluster_tree_path ${result_path}/tree/traditional_m");
 						system("mv $label_marked_path ${result_path}/label_marked/traditional_m");
+					}
+					if($annan_m_tag){
+						print "annan_m\n";
+						system("(time -p ./bin/hc_m ${data_path} ${label_bottom_path} ${sample_path}/weight_annan) 2>> ${result_path}/time/annan_m");
+						foreach(@level_name) {
+							system("./bin/fscore $path_map->{$_} ${cluster_tree_path}");
+							system("cat ./fscore >> ${result_path}/$_/annan_m");
+							system("rm ./fscore");
+						}
+						system("mv $cluster_tree_path ${result_path}/tree/annan_m");
+						system("mv $label_marked_path ${result_path}/label_marked/annan_m");
 					}
 					if($rt_tag){
 						print("distance\n");
