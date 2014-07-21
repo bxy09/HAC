@@ -9,9 +9,9 @@ $ifGenerateWeight = 1;
 %reuters2 = ('flag','0','address','data/reuters2/','sample_mode','even',
 	'num','900','sample_ratio','0.1','repeat_for_each_mat',1,'mat_count',1);
 %audit = ('flag','1','address','data/audit/','sample_mode','even',
-	'num','288','sample_ratio','0.1','repeat_for_each_mat',10,'mat_count',1);
+	'num','288','sample_ratio','0.1','repeat_for_each_mat',1,'mat_count',1);
 
-foreach $ratio(0.15,0.1,0.05) {
+foreach $ratio(0.05,0.15,0.1) {
 	foreach my $mode('random'){
 
 		foreach my $num(5794,6594) {#(550,1059,2059,3059,4059) {
@@ -64,6 +64,7 @@ sub generate {
 				system ("bin/weight $matAddress/mat ./mlb_constraints 10");
 				system ("rm ./mlb_constraints");
 				system ("mv ./weight $sampleAddress/weight");
+				system ("python data_prepare/annan/learnWeights1228byfour.py $matAddress/mat $sampleAddress/label_marked $sampleAddress/weight_annan")
 			}
 			#constraint
 			system ("bin/generate_constraints $sampleAddress/label_marked");
@@ -98,6 +99,7 @@ sub generate_for_reuters {
 				system ("bin/weight $matAddress/mat ./mlb_constraints 10");
 				system ("rm ./mlb_constraints");
 				system ("mv ./weight $sampleAddress/weight");
+				system ("python data_prepare/annan/learnWeights1228byfour.py $matAddress/mat $sampleAddress/label_marked $sampleAddress/weight_annan")
 			}
 			#constraint
 			system ("bin/generate_constraints $sampleAddress/label_marked");
