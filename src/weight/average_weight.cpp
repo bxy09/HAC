@@ -30,13 +30,16 @@ int read_weight(int argc, char* argv[]){
 	for(int i = 0; i < weight_level; i++){
 		getline(fp_weight,str);
 	}
+	getline(fp_weight,str);
 
 	stringstream strstr(str);
 	loc = FIRST_TERM_ID;
 	while(strstr >> bonus_weight[loc]){
 		loc++;
 	}
+	cout<<endl;
 	if(loc!=term_count+FIRST_TERM_ID) {
+		cout<<"loc:"<<loc<<" term+1:"<<term_count+FIRST_TERM_ID<<endl;
 		cout<<"Error:wtf in read_weight from average_weight"<<endl;
 		return -1;
 	}

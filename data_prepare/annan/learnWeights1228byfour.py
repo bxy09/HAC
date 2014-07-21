@@ -85,6 +85,11 @@ def updateWeights(X, Y, nu = 0.015):
     for key in data[X].keys():
         if key in data[Y]:
             feats[key] += feats[key] * nu * data[X][key] * data[Y][key]
+            if feats[key] > 100.0:
+                feats[key] = 100
+            if feats[key] < -100.0:
+                feats[key] = -100
+
 ##end of updateWeights
 
 def learnWPilot(nu = 0.015, thirdParty = -1, iterations = 1):

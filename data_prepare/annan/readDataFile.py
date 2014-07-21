@@ -73,7 +73,7 @@ def readFromMyFileWithTfidf(myFileName, labelFileName):
     docNumF = float(docNum)
     for docIndex in range(docNum):
         for key in data[docIndex].keys():
-            data[docIndex][key] = data[docIndex][key]*math.log(docFrequency[key]/docNumF)
+            data[docIndex][key] = data[docIndex][key]*math.log(docNumF/docFrequency[key])
 
     ##read labels
 
