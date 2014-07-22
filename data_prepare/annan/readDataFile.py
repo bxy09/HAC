@@ -61,14 +61,18 @@ def readFromMyFileWithTfidf(myFileName, labelFileName):
         items = lines[lineIndex+1].split()
         dataForLine = {}
         itemNum = len(items)
+        termInDoc = 0
         for itemIndex in range(0,itemNum,2):
             key = int(items[itemIndex])
             value = float(items[itemIndex+1])
+            termInDoc += value
             dataForLine[key] = value
             if docFrequency.has_key(key):
                 docFrequency[key] = docFrequency.get(key)+1
             else:
                 docFrequency[key] = 1
+        for termIndex in dataForLine.keys():
+            dataForLine[termIndex] = dataForLine[termIndex]/termInDoc
         data.append(dataForLine)
     docNumF = float(docNum)
     for docIndex in range(docNum):

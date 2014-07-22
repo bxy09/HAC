@@ -15,3 +15,7 @@
 data/
 bin/
 result*
+
+cluster_tree
+
+cluster_tree_label
