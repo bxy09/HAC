@@ -208,12 +208,17 @@ void read_data()
 		getline(fp_data,strin);
 		stringstream strline(strin);
 		doc[i] = loc;
+		int termsInDoc = 0;
 		while(strline >> t_id)
 		{
 			doc_frequency[t_id]++;
 			term_id[loc] = t_id;
 			strline >> term_frequency[loc];
+			termsInDoc += term_frequency[loc];
 			loc++;
+		}
+		for(int j = doc[i]; j < loc; j++) {
+			term_frequency[j] /= termsInDoc;
 		}
 		
 	}
