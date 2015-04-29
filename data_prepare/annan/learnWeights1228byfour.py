@@ -17,6 +17,7 @@ for each sample i:
 from readDataFile import readFromMyFileWithTfidf as readFromMyFileWithTfidf
 from random import randrange as randrange
 import time
+import math
 import profile
 import sys
 
@@ -46,11 +47,15 @@ def sim(x,y, power = 1):
     global feats
     newx = {}
     newy = {}
+    xnorm = 0.0
+    ynorm = 0.0
     for key in data[x].keys():
         newx[key] = data[x][key] * feats[key]
+        xnorm += newx[key]*newx[key]
     for key in data[y].keys():
         newy[key] = data[y][key] * feats[key]
-    sp = scalarProduct(newx, newy)
+        ynorm = newy[key]*newy[key]
+    sp = scalarProduct(newx, newy)/math.pow(xnorm*ynorm,0.5)
     return sp
 ##end of sim(x,y)
 
@@ -85,11 +90,7 @@ def updateWeights(X, Y, nu = 0.015):
     for key in data[X].keys():
         if key in data[Y]:
             feats[key] += feats[key] * nu * data[X][key] * data[Y][key]
-            if feats[key] > 100.0:
-                feats[key] = 100
-            if feats[key] < -100.0:
-                feats[key] = -100
-
+            
 ##end of updateWeights
 
 def learnWPilot(nu = 0.015, thirdParty = -1, iterations = 1):

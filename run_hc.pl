@@ -63,8 +63,8 @@ sub run{
 					my $rt_tag = 1;
 					my $tra_m_tag = 1;
 					my $annan_m_tag = 1;
-					my $mlb_m_tag = 0;
-					my $rt_m_tag = 0;
+					my $mlb_m_tag = 1;
+					my $rt_m_tag = 1;
 
 					my @level_name = qw 'bottom_level middle_level top_level';
 					my $path_map;

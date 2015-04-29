@@ -12,6 +12,8 @@
 *.la
 *.a
 
+*.pyc
+
 data/
 bin/
 result*
